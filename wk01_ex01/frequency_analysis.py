@@ -94,8 +94,15 @@ def main():
         print("Histogram:")
         print(result)
 
-
 if __name__ == "__main__":
     main()
+
+"""
+word = "Testing Stuff!"
+parsed = letter_freq(word)
+if __name__ == "__main__":
+    print(parsed)
+    print(histogram(parsed))
+"""
     
 
