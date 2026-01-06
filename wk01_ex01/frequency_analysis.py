@@ -94,8 +94,6 @@ def main():
         print("Histogram:")
         print(result)
 
-    
-word = "Testing Stuff"
 
 if __name__ == "__main__":
     main()
