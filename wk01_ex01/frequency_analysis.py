@@ -68,31 +68,38 @@ def main():
     
     parser.add_argument('in_string', type=str, help='The string to process')
     
-    group = parser.add_mutually_exclusive_group()
-    group.add_argument('-c', '--chars', action='store_true', 
+    operation = parser.add_mutually_exclusive_group()
+
+    operation.add_argument('-c', '--chars', action='store_true', 
                       help='Use the char_freq function')
-    group.add_argument('-l', '--letters', action='store_true', 
+    operation.add_argument('-l', '--letters', action='store_true', 
                       help='Use the letter_freq function')
-    group.add_argument('-g', '--histogram', action='store_true', 
+    operation.add_argument('-g', '--histogram', action='store_true', 
                       help='Use the histogram function (default)')
     
     args = parser.parse_args()
+
+    result = None
     
     print(f"Input string: {args.in_string}\n")
     
     if args.chars:
         result = char_freq(args.in_string)
-        print("Character frequency:")
-        print(result)
+        operation_name = "Character frequency"
     elif args.letters:
         result = letter_freq(args.in_string)
-        print("Letter frequency:")
-        print(result)
-    else:
+        operation_name = "Letter frequency"
+    elif args.histogram:
         freq = letter_freq(args.in_string)
         result = histogram(freq)
-        print("Histogram:")
-        print(result)
+        operation_name = "Histogram"  
+    else:
+        result = args.in_string
+        operation_name = "No operation"
+
+    print(f"Input: '{args.in_string}'")
+    print(f"Operation: {operation_name}")
+    print(f"Result: '{result}'")
 
 if __name__ == "__main__":
     main()
