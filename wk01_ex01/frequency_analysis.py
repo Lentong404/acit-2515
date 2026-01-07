@@ -2,7 +2,8 @@ import string
 import argparse
 
 # Exercise 1
-def char_freq(word:str):
+# -> tells you the return type
+def char_freq(word:str) -> dict:
     """
     -takes a string as its only argument
     -returns a dictionary:
@@ -48,8 +49,7 @@ def histogram(clean_freq:str):
     """
     result = []
     for letter in clean_freq:
-        if letter in clean_freq:
-            result.append(f"{letter}: {'*' * clean_freq[letter]}")
+        result.append(f"{letter}: {'*' * clean_freq[letter]}")
         
     return "\n".join(result)
 
@@ -64,8 +64,10 @@ def main():
     The program should print the input string and the result of the selected operation.
     """
 
+    # Makes a description
     parser = argparse.ArgumentParser(description='Analyze character frequency in a string')
     
+    # Add a positional Argument
     parser.add_argument('in_string', type=str, help='The string to process')
     
     operation = parser.add_mutually_exclusive_group()

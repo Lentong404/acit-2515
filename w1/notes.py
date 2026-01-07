@@ -34,7 +34,9 @@ Encapsulation: Keep the example easy to use
  in CMD line type something what happens? 
  Ans: Path (List of Places you look in your path | Directory Location) 
  Type ipconfig: 
- - Goes through the Path, looking for the file name until it finds it o-o
+ - Looks at the special variable called Path, 
+ - Looks at every path listed there
+ - looks for the program called ipconfig 
  - Finds a match, looks up what to do 
 
  When you import into a Python program, you look through the sysPath. 
@@ -58,6 +60,15 @@ You dont need to have Type
 
 if __name__ == "__main__": 
     main()
+
+name contains the currently running process 
+Entry point for Python will have the name __main__ 
+ - Checks if the currently running process is the same as __main__ 
+
+when this file is imported it wont have the __main__ name so everything under the if won't run :0
+
+Safety thing - Ensures the function doesn't accidentally run 
+ - You might know not to run the code but if someone else imported this function they might not know
 
 __ is used by Python 
 
