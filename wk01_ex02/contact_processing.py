@@ -33,18 +33,18 @@ def count_populated_entries(filename: str) -> int:
     return num_populated_lines
 
 #Exercise 3 - List unique entries
-def list_unique(filename: str) -> list[str]:
+def list_unique(filename: str) -> set[str]:
     """
     Get a set of unique names from the file
     Clean up White space
     No duplicate names
     """
-    unique_names = []
+    unique_names = set()
 
     with open(filename, "r") as file_obj:
         for l in file_obj:
-            if l.strip() != "" and l not in unique_names:
-                unique_names.append(l)
+            if l.strip() != "":
+                unique_names.add(l)
 
     return unique_names
 
