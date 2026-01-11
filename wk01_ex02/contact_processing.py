@@ -7,15 +7,14 @@ def count_entries(filename: str) -> list[str]:
     It takes a filename as argument
     returns the total number of lines (entries) in the file including empty lines.
     """
-    num_lines = 0
-
-    with open(filename, "r") as file_obj:
+    with open(filename, 'r') as file_obj:
         lines = file_obj.readlines()
+        if lines[-1][-1:] == '\n':
+            length = len(lines) + 1
+            return length
+        else:
+            return len(lines)
 
-        for l in lines:
-            if l in lines:
-                num_lines += 1
-    return num_lines
     
 #Exercise 2
 def count_populated_entries(filename: str) -> int:
@@ -25,12 +24,14 @@ def count_populated_entries(filename: str) -> int:
     """
     num_populated_lines = 0
     
-    with open(filename, "r") as file_obj:
+    with open(filename, 'r') as file_obj:
+        file_obj = file_obj.readlines()
         for l in file_obj:
-            if l.strip() != "":
+            if l != '\n':
                 num_populated_lines +=1
+        return num_populated_lines
 
-    return num_populated_lines
+
 
 #Exercise 3 - List unique entries
 def list_unique(filename: str) -> set[str]:
@@ -43,7 +44,9 @@ def list_unique(filename: str) -> set[str]:
 
     with open(filename, "r") as file_obj:
         for l in file_obj:
-            if l.strip() != "":
+            name = l.strip()
+
+            if name:
                 unique_names.add(l)
 
     return unique_names
@@ -97,7 +100,7 @@ def main() -> None:
 
     print(f"Input: '{args.in_string}'")
     print(f"Operation: {operation_name}")
-    print(f"Result: {result}")
+    print(f"Result: \n{result}")
 
 if __name__ == "__main__":
     main()
