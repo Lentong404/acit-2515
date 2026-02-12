@@ -67,46 +67,11 @@ def suppress_errors(*exception_types):
 
 
 def log_processes(filename="processes_snapshot.log"):
-    def decorator(func):
-        @wraps(func)
-        def wrapper(*args, **kwargs):
-            processes = func(*args,**kwargs)
-            timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-            header = f"{timestamp} - {len(processes)} processes"
-            with open(filename, 'w') as file:
-                file.write(header)
-                file.write(f"PID Name User CPU% Mem% Phys Mem(MB) Exe Cmdline")
-                for proc in processes:
-                    pid = proc.get('pid')
-                    name = proc.get('name')
-                    username = proc.get('username')
-                    cpu_percent = proc.get('cpu_percent')
-                    memory_percent = proc.get('memory_percent')
-                    phys_mem = proc.get('phys_mem') / (1024**2)
-                    exe = proc.get('exe')
-                    cmdline = proc.get('cmdline')
-                    file.write(f"{pid} {name} {username} {cpu_percent} {memory_percent} {phys_mem} {exe} {cmdline}")
-            return processes
-        return wrapper
-    return decorator 
+    pass
 
 
 def filter_by_current_user(func):
-    @wraps(func)
-    def wrapper(*args, **kwargs):
-        current_user = getpass.getuser()
-        processes = func(*args,**kwargs)
-        filtered_list = []
-        print(f"[Filtering] getting only processes for user: {current_user}")
-        for proc in processes:
-            proc_user = proc.get("username")
-            if proc_user and current_user in proc_user:
-                filtered_list.append(proc)
-        filtered_count = len(filtered_list)
-        original_count = len(processes)
-        print(f"[Filtering] Filtered from {original_count} to {filtered_count} processes")
-        return filtered_list
-    return wrapper
+    pass
 
 
 def sort_processes(field="cpu_percent", reverse=True):

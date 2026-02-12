@@ -16,12 +16,13 @@ b will always be whatever is defined, even if the position is different.
 
 
 
+### ARGS #### 
 
 '''
 Pass * in a function and itll pack the arguments received into a tuple
 Pass * to a tuple, and itll unpack everything
-
 '''
+
 # Unpacking a list into function arguments
 def add_three_numbers(a, b, c):
     return a + b + c
@@ -29,8 +30,8 @@ numbers = [1, 2, 3]
 result = add_three_numbers(*numbers)  # Same as add_three_numbers(1, 2, 3)
 print(result)  # 6
 
-# Unpacking in list creation
 
+# Unpacking in list creation
 '''
 You have two lists. 
 combined makes the *args unpack these two lists into one list which is combined
@@ -55,6 +56,12 @@ print(sum_all(5))                  # 5
 print(sum_all())                   # 0
 
 
+### KWARGS #### 
+'''
+Pass ** in a function and itll pack the keyword arguments received into a dictionary
+Pass ** to a dictionary, and itll unpack everything in key:value pairs or keyword arguments like name="Alice" age=24
+
+'''
 
 # Unpacking a dictionary into keyword arguments
 def greet(name, age, city):
@@ -69,8 +76,6 @@ defaults = {"color": "blue", "size": "medium"}
 custom = {"size": "large", "style": "modern"}
 merged = {**defaults, **custom}  # {"color": "blue", "size": "large", "style": "modern"}
 print(merged)  # Note: custom["size"] overwrites defaults["size"]
-
-
 
 
 
@@ -89,7 +94,8 @@ greet_multiple("Hello", "Alice", "Bob", "Charlie")
 
 
 
-# Forwarding Arguments
+### FORWARDING ARGUMENTS ######
+
 '''
 Decorator functions let you add additional operations? functions? to an existing function
     Its like adding side sauces to a main dish!
@@ -107,6 +113,10 @@ but logger only defines wrapper - it returns wrapper
     returns the multiply function (func) packs the arguments 
 
     wrapper is returned because its a function that needs to go before multiply first
+
+You dont need *args or **kwargs in decorators, but it allows the decorator to accept keyword/positional arguments
+    *args in a function, accepts positional arguments and sticks them in a tuple
+    **kwargs in a function, accepts keyword arguments and sticks them in a dictionary
 '''
 
 def logger(func):
